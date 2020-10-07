@@ -5,8 +5,11 @@ import '../widgets/box.dart';
 import '../widgets/icon_content.dart';
 
 const activeCardColour = Color(0xFF1D1E33);
+const inactiveCardColour = Color(0xFF111328);
 const bottomButtonColor = Color(0xFFEB1555);
 const bottomButtonHeight = 80.0;
+
+enum Gender { male, female }
 
 class InputPage extends StatefulWidget {
   @override
@@ -14,6 +17,8 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
+  Gender selectedGender;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,33 +31,57 @@ class _InputPageState extends State<InputPage> {
           Expanded(
             child: Row(
               children: [
-                Box(
-                  color: activeCardColour,
-                  child: IconContent(
-                    icon: FontAwesomeIcons.mars,
-                    label: 'Male',
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() => {selectedGender = Gender.male});
+                    },
+                    child: Box(
+                      color: selectedGender == Gender.male
+                          ? activeCardColour
+                          : inactiveCardColour,
+                      child: IconContent(
+                        icon: FontAwesomeIcons.mars,
+                        label: 'Male',
+                      ),
+                    ),
                   ),
                 ),
-                Box(
-                    color: activeCardColour,
-                    child: IconContent(
-                      icon: FontAwesomeIcons.venus,
-                      label: 'Female',
-                    )),
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() => {selectedGender = Gender.female});
+                    },
+                    child: Box(
+                        color: selectedGender == Gender.female
+                            ? activeCardColour
+                            : inactiveCardColour,
+                        child: IconContent(
+                          icon: FontAwesomeIcons.venus,
+                          label: 'Female',
+                        )),
+                  ),
+                ),
               ],
             ),
           ),
-          Box(
-            color: activeCardColour,
+          Expanded(
+            child: Box(
+              color: activeCardColour,
+            ),
           ),
           Expanded(
             child: Row(
               children: [
-                Box(
-                  color: activeCardColour,
+                Expanded(
+                  child: Box(
+                    color: activeCardColour,
+                  ),
                 ),
-                Box(
-                  color: activeCardColour,
+                Expanded(
+                  child: Box(
+                    color: activeCardColour,
+                  ),
                 ),
               ],
             ),
