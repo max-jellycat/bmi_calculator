@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import 'widgets/box.dart';
+import 'widgets/icon_content.dart';
 
 const activeCardColour = Color(0xFF1D1E33);
 
@@ -24,17 +27,34 @@ class _InputPageState extends State<InputPage> {
               Expanded(
                 child: Row(
                   children: [
-                    Box(colour: activeCardColour),
-                    Box(colour: activeCardColour),
+                    Box(
+                      color: activeCardColour,
+                      child: IconContent(
+                        icon: FontAwesomeIcons.mars,
+                        text: 'Male',
+                      ),
+                    ),
+                    Box(
+                        color: activeCardColour,
+                        child: IconContent(
+                          icon: FontAwesomeIcons.venus,
+                          text: 'Female',
+                        )),
                   ],
                 ),
               ),
-              Box(colour: activeCardColour),
+              Box(
+                color: activeCardColour,
+              ),
               Expanded(
                 child: Row(
                   children: [
-                    Box(colour: activeCardColour),
-                    Box(colour: activeCardColour),
+                    Box(
+                      color: activeCardColour,
+                    ),
+                    Box(
+                      color: activeCardColour,
+                    ),
                   ],
                 ),
               ),
