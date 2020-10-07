@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../constants.dart';
 import '../widgets/box.dart';
 import '../widgets/icon_content.dart';
-
-const activeCardColour = Color(0xFF1D1E33);
-const inactiveCardColour = Color(0xFF111328);
-const bottomButtonColor = Color(0xFFEB1555);
-const bottomButtonHeight = 80.0;
+import '../widgets/slider_content.dart';
 
 enum Gender { male, female }
 
@@ -18,6 +15,7 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   Gender selectedGender;
+  int selectedHeight = 160;
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +25,7 @@ class _InputPageState extends State<InputPage> {
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
             child: Row(
@@ -34,8 +33,8 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: Box(
                     color: selectedGender == Gender.male
-                        ? activeCardColour
-                        : inactiveCardColour,
+                        ? kActiveCardColor
+                        : kInactiveCardColor,
                     child: IconContent(
                       icon: FontAwesomeIcons.mars,
                       label: 'Male',
@@ -50,8 +49,8 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: Box(
                     color: selectedGender == Gender.female
-                        ? activeCardColour
-                        : inactiveCardColour,
+                        ? kActiveCardColor
+                        : kInactiveCardColor,
                     child: IconContent(
                       icon: FontAwesomeIcons.venus,
                       label: 'Female',
@@ -68,7 +67,16 @@ class _InputPageState extends State<InputPage> {
           ),
           Expanded(
             child: Box(
-              color: activeCardColour,
+              color: kActiveCardColor,
+              child: SliderContent(
+                label: "Height",
+                value: selectedHeight,
+                onChanged: (double value) {
+                  setState(() {
+                    selectedHeight = value.round();
+                  });
+                },
+              ),
             ),
           ),
           Expanded(
@@ -76,21 +84,21 @@ class _InputPageState extends State<InputPage> {
               children: [
                 Expanded(
                   child: Box(
-                    color: activeCardColour,
+                    color: kActiveCardColor,
                   ),
                 ),
                 Expanded(
                   child: Box(
-                    color: activeCardColour,
+                    color: kActiveCardColor,
                   ),
                 ),
               ],
             ),
           ),
           Container(
-            color: bottomButtonColor,
+            color: kAccentColor,
             width: double.infinity,
-            height: bottomButtonHeight,
+            height: kBottomButtonHeight,
             margin: EdgeInsets.only(top: 8.0),
             child: Padding(
               padding: const EdgeInsets.all(16.0),

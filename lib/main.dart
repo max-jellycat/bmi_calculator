@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'pages/input_page.dart';
+import 'constants.dart';
 
 void main() {
   runApp(
     MaterialApp(
       theme: ThemeData(
         brightness: Brightness.dark,
-        primaryColor: Color(0xFF0A0E21),
-        accentColor: Color(0xFFEB1555),
-        scaffoldBackgroundColor: Color(0xFF0A0E21),
+        primaryColor: kPrimaryColor,
+        accentColor: kAccentColor,
+        scaffoldBackgroundColor: kPrimaryColor,
         fontFamily: "Montserrat",
       ),
       home: InputPage(),

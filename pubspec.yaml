@@ -29,3 +29,5 @@ flutter:
       - asset: fonts/Montserrat-Regular.ttf
       - asset: fonts/Montserrat-700.ttf
         weight: 700
+      - asset: fonts/Montserrat-900.ttf
+        weight: 900
