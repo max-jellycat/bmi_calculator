@@ -1,5 +1,7 @@
+import 'package:bmi_calculator/pages/result_page.dart';
 import 'package:flutter/material.dart';
 import 'pages/input_page.dart';
+import 'pages/result_page.dart';
 import 'constants.dart';
 
 void main() {
@@ -12,7 +14,11 @@ void main() {
         scaffoldBackgroundColor: kPrimaryColor,
         fontFamily: "Montserrat",
       ),
-      home: InputPage(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => InputPage(),
+        '/result': (context) => ResultPage(),
+      },
     ),
   );
 }

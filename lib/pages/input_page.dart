@@ -121,20 +121,23 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          Container(
-            color: kAccentColor,
-            width: double.infinity,
-            height: kBottomButtonHeight,
-            margin: EdgeInsets.only(top: 8.0),
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text(
-                'CALCULATE',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18.0,
-                  letterSpacing: 1.0,
+          GestureDetector(
+            onTap: () => Navigator.pushNamed(context, '/result'),
+            child: Container(
+              color: kAccentColor,
+              width: double.infinity,
+              height: kBottomButtonHeight,
+              margin: EdgeInsets.only(top: 8.0),
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Text(
+                  'CALCULATE',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18.0,
+                    letterSpacing: 1.0,
+                  ),
                 ),
               ),
             ),

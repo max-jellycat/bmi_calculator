@@ -12,17 +12,17 @@ const _kSmallSizeContraints = BoxConstraints.tightFor(
 const _kElevation = 6.0;
 
 class RoundIconButton extends StatelessWidget {
+  final IconData icon;
   final double radius;
   final Color backgroundColor;
-  final IconData icon;
   final Color color;
   final Function onPressed;
   final bool isSmall;
 
   RoundIconButton({
+    @required this.icon,
     this.radius,
     this.backgroundColor,
-    this.icon,
     this.color,
     this.onPressed,
     this.isSmall,
