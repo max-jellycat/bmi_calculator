@@ -40,7 +40,7 @@ class SliderContent extends StatelessWidget {
           data: SliderTheme.of(context).copyWith(
             trackHeight: 1.0,
             activeTrackColor: kAccentColor,
-            inactiveTrackColor: kLabelColor,
+            inactiveTrackColor: kLightGreyColor,
             thumbColor: kAccentColor,
             thumbShape: RoundSliderThumbShape(
               enabledThumbRadius: 16.0,
