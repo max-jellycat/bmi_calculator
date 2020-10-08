@@ -5,7 +5,7 @@ import '../constants.dart';
 import '../widgets/box.dart';
 import '../widgets/icon_content.dart';
 import '../widgets/slider_content.dart';
-import '../widgets/round_icon_button.dart';
+import '../widgets/incremental_content.dart';
 
 enum Gender { male, female }
 
@@ -18,6 +18,7 @@ class _InputPageState extends State<InputPage> {
   Gender selectedGender;
   int selectedHeight = 160;
   int selectedWeight = 60;
+  int selectedAge = 18;
 
   @override
   Widget build(BuildContext context) {
@@ -85,58 +86,36 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: [
                 Expanded(
-                  child: Box(
-                    color: kActiveCardColor,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text('Weight', style: kLabelTextStyle),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.baseline,
-                          textBaseline: TextBaseline.alphabetic,
-                          children: [
-                            Text(selectedWeight.toString(),
-                                style: kValueTextStyle),
-                            SizedBox(width: 4.0),
-                            Text('kg', style: kLabelTextStyle),
-                          ],
-                        ),
-                        SizedBox(height: 16.0),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            RoundIconButton(
-                              onPressed: () {
-                                setState(() {
-                                  selectedWeight--;
-                                });
-                              },
-                              backgroundColor: kGreyColor,
-                              icon: FontAwesomeIcons.minus,
-                              color: Colors.white,
-                              radius: 16.0,
-                            ),
-                            RoundIconButton(
-                              onPressed: () {
-                                setState(() {
-                                  selectedWeight++;
-                                });
-                              },
-                              backgroundColor: kGreyColor,
-                              icon: FontAwesomeIcons.plus,
-                              color: Colors.white,
-                              radius: 16.0,
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
+                  child: IncrementalContent(
+                    label: "Weight",
+                    value: selectedWeight,
+                    unit: "kg",
+                    onDecrement: () {
+                      setState(() {
+                        selectedWeight--;
+                      });
+                    },
+                    onIncrement: () {
+                      setState(() {
+                        selectedWeight++;
+                      });
+                    },
                   ),
                 ),
                 Expanded(
-                  child: Box(
-                    color: kActiveCardColor,
+                  child: IncrementalContent(
+                    label: "Age",
+                    value: selectedAge,
+                    onDecrement: () {
+                      setState(() {
+                        selectedAge--;
+                      });
+                    },
+                    onIncrement: () {
+                      setState(() {
+                        selectedAge++;
+                      });
+                    },
                   ),
                 ),
               ],
