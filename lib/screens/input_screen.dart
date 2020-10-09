@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../router.dart';
 import '../constants.dart';
+import '../calculator.dart';
 import '../widgets/box.dart';
 import '../widgets/icon_content.dart';
 import '../widgets/slider_content.dart';
 import '../widgets/incremental_content.dart';
+import '../widgets/bottom_button.dart';
 
 enum Gender { male, female }
 
-class InputPage extends StatefulWidget {
+class InputScreen extends StatefulWidget {
   @override
-  _InputPageState createState() => _InputPageState();
+  _InputScreenState createState() => _InputScreenState();
 }
 
-class _InputPageState extends State<InputPage> {
+class _InputScreenState extends State<InputScreen> {
   Gender selectedGender;
   int selectedHeight = 160;
   int selectedWeight = 60;
@@ -121,26 +124,24 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          GestureDetector(
-            onTap: () => Navigator.pushNamed(context, '/result'),
-            child: Container(
-              color: kAccentColor,
-              width: double.infinity,
-              height: kBottomButtonHeight,
-              margin: EdgeInsets.only(top: 8.0),
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text(
-                  'CALCULATE',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18.0,
-                    letterSpacing: 1.0,
-                  ),
+          BottomButton(
+            label: "CALCULATE",
+            onTap: () {
+              Calculator calculator = Calculator(
+                height: selectedHeight,
+                weight: selectedWeight,
+              );
+
+              Navigator.pushNamed(
+                context,
+                ResultScreenRoute,
+                arguments: ResultScreenArguments(
+                  calculator.calculateBMI(),
+                  calculator.getResult(),
+                  calculator.getInterpretation(),
                 ),
-              ),
-            ),
+              );
+            },
           )
         ],
       ),

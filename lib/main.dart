@@ -1,8 +1,6 @@
-import 'package:bmi_calculator/pages/result_page.dart';
 import 'package:flutter/material.dart';
-import 'pages/input_page.dart';
-import 'pages/result_page.dart';
 import 'constants.dart';
+import 'router.dart';
 
 void main() {
   runApp(
@@ -14,11 +12,8 @@ void main() {
         scaffoldBackgroundColor: kPrimaryColor,
         fontFamily: "Montserrat",
       ),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => InputPage(),
-        '/result': (context) => ResultPage(),
-      },
+      onGenerateRoute: generateRoute,
+      initialRoute: InputScreenRoute,
     ),
   );
 }
