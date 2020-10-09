@@ -1,25 +1,52 @@
 import "dart:math";
 
+enum BMIValue {
+  Underweight,
+  Normal,
+  Overweight,
+  Obesity1,
+  Obesity2,
+  MorbidObese
+}
+
 class Calculator {
   final int height;
   final int weight;
 
-  Map<String, String> results = {
-    "Underweight":
-        "You have a lower than normal body weight. Try to have a healthier diet and exercise more.",
-    "Normal": "You have a normal body weight. Good job!",
-    "Overweight":
-        "You have a higher than normal body weight. Try to have a healthier diet and exercise more.",
-    "Obesity stage 1":
-        "You are obese. Try to have a healthier diet and exercise more.",
-    "Obesity stage 2":
-        "You are more than obese. Try to have a healthier diet and exercise more.",
-    "Morbid obesity":
-        "You are in danger. You have to get a healthier diet and exercise more."
+  Map results = {
+    BMIValue.Underweight: {
+      "result": "Underweight",
+      "interpretation":
+          "You have a lower than normal body weight. Try to have a healthier diet and exercise more."
+    },
+    BMIValue.Normal: {
+      "result": "Normal",
+      "interpretation": "You have a normal body weight. Good job!"
+    },
+    BMIValue.Overweight: {
+      "result": "Overweight",
+      "interpretation":
+          "You have a higher than normal body weight. Try to have a healthier diet and exercise more.",
+    },
+    BMIValue.Obesity1: {
+      "result": "Obesity stage 1",
+      "interpretation":
+          "You are obese. Try to have a healthier diet and exercise more.",
+    },
+    BMIValue.Obesity2: {
+      "result": "Obesity stage 2",
+      "interpretation":
+          "You are more than obese. Try to have a healthier diet and exercise more.",
+    },
+    BMIValue.MorbidObese: {
+      "result": "Morbid obesity",
+      "interpretation":
+          "You are in danger. You have to get a healthier diet and exercise more.",
+    },
   };
 
   double _bmi;
-  String _result;
+  BMIValue _result;
 
   Calculator({this.height, this.weight});
 
@@ -30,23 +57,23 @@ class Calculator {
 
   String getResult() {
     if (_bmi >= 40) {
-      _result = "Morbid obesity";
+      _result = BMIValue.MorbidObese;
     } else if (_bmi > 35 && _bmi < 40) {
-      _result = "Obesity stage 2";
+      _result = BMIValue.Obesity2;
     } else if (_bmi > 30 && _bmi < 35) {
-      _result = "Obesity stage 1";
+      _result = BMIValue.Obesity1;
     } else if (_bmi > 25 && _bmi < 30) {
-      _result = "Overweight";
+      _result = BMIValue.Overweight;
     } else if (_bmi > 18.5 && _bmi < 25) {
-      _result = "Normal weight";
+      _result = BMIValue.Normal;
     } else {
-      _result = "Underweight";
+      _result = BMIValue.Underweight;
     }
 
-    return _result;
+    return results[_result]["result"];
   }
 
   String getInterpretation() {
-    return results[_result];
+    return results[_result]["interpretation"];
   }
 }
